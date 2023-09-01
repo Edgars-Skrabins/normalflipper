@@ -52,7 +52,6 @@
     border-style: solid;
     border-color: black;
     border-width: 0.1rem;
-    
 }
 
 #file-input{
@@ -79,6 +78,17 @@
 #file-input::file-selector-button:active{
     border-radius: 0.8rem;
     background-color: #e7e7e7;
-    
+}
+
+.flip-button{
+    margin: 0.5rem;
+    font-size: 1.3rem;
+    max-height: 40rem;
+    max-width: 40rem;
+    border-style: solid;
+    border-color: black;
+    border-width: 0.1rem;
+    border-radius: 0.3rem;
+    background-color: #fdfdfd;
 }
 
