@@ -35,7 +35,7 @@ function flipNormalMap()
 
         preview.removeChild(imageElement);
 
-        const convertedImage = convertNormalMap(normalMapImage, 'OpenGLToDirectX');
+        const convertedImage = convertNormalMap(normalMapImage);
 
         convertedImage.classList.add("previewImage");
         preview.appendChild(convertedImage);
@@ -63,7 +63,7 @@ function handleFiles(files) {
     }
 }
 
-function convertNormalMap(normalMapImage, conversionDirection) {
+function convertNormalMap(normalMapImage) {
     
     const canvas = document.createElement('canvas');
     const ctx = canvas.getContext('2d');
@@ -75,22 +75,13 @@ function convertNormalMap(normalMapImage, conversionDirection) {
     const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
     const pixels = imageData.data;
 
-    if (conversionDirection === 'OpenGLToDirectX') {
-        for (let y = 0; y < canvas.height; y++) {
-            for (let x = 0; x < canvas.width; x++) {
-                const i = (y * canvas.width + x) * 4;
-                pixels[i + 1] = 255 - pixels[i + 1];
-            }
-        }
-    } else if (conversionDirection === 'DirectXToOpenGL') {
-        for (let y = 0; y < canvas.height; y++) {
-            for (let x = 0; x < canvas.width; x++) {
-                const i = (y * canvas.width + x) * 4;
-                pixels[i + 1] = 255 - pixels[i + 1];
-            }
+    for (let y = 0; y < canvas.height; y++) {
+        for (let x = 0; x < canvas.width; x++) {
+            const i = (y * canvas.width + x) * 4;
+            pixels[i + 1] = 255 - pixels[i + 1];
         }
     }
-
+    
     ctx.putImageData(imageData, 0, 0);
 
     const modifiedImage = new Image();
