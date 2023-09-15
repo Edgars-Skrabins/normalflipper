@@ -1,7 +1,9 @@
 ﻿const dropArea = document.getElementById('drop-area');
 const fileInput = document.getElementById('file-input');
 const preview = document.getElementById('preview');
+const downloadBtn = document.getElementById('download-button');
 
+downloadBtn.addEventListener(`click`, downloadNormalMap());
 dropArea.addEventListener('dragover', (event) => {
     event.preventDefault();
     dropArea.classList.add('active');
@@ -25,6 +27,7 @@ let flipButton = document.getElementById("flip-button");
 
 flipButton.addEventListener("click", flipNormalMap);
 
+let hasFlipped = false;
 function flipNormalMap()
 {
     const imageElement = preview.firstChild;
@@ -39,7 +42,7 @@ function flipNormalMap()
 
         convertedImage.classList.add("previewImage");
         preview.appendChild(convertedImage);
-        
+        hasFlipped = hasFlipped ? false : true;
     }
 }
 
@@ -88,4 +91,14 @@ function convertNormalMap(normalMapImage) {
     modifiedImage.src = canvas.toDataURL();
 
     return modifiedImage;
+}
+
+function downloadNormalMap()
+{
+    if(!hasFlipped) return;
+    
+    const imageElement = preview.firstChild;
+    
+    
+    
 }
