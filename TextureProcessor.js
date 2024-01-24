@@ -43,7 +43,6 @@ function flipNormalMap()
 }
 
 function handleFiles(files) {
-    
     if(preview.firstChild) preview.removeChild(preview.firstChild);
 
     for (const file of files) {
@@ -63,7 +62,6 @@ function handleFiles(files) {
 }
 
 function convertNormalMap(normalMapImage) {
-    
     const canvas = document.createElement('canvas');
     const ctx = canvas.getContext('2d');
     canvas.width = normalMapImage.width;
